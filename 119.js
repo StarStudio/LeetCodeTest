@@ -3,9 +3,8 @@
  * @return {number[]}
  */
 var getRow = function(rowIndex) {
-	var row = [];
-	rowLength = parseInt(rowIndex / 2);
-	row.push(1);
+	var row = [1];
+	rowLength = rowIndex >> 2;
 	for(var i = 1; i <= rowLength; i++){
 		row.push( row[i - 1] * (rowIndex - i + 1) / i);
 	}
