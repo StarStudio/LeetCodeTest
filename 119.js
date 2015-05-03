@@ -4,7 +4,7 @@
  */
 var getRow = function(rowIndex) {
 	var row = [1];
-	rowLength = rowIndex >> 2;
+	rowLength = rowIndex >> 1;
 	for(var i = 1; i <= rowLength; i++){
 		row.push( row[i - 1] * (rowIndex - i + 1) / i);
 	}

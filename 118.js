@@ -3,28 +3,19 @@
  * @return {number[][]}
  */
 var generate = function(numRows) {
-    var numCol = [];
-    for(var k = 0; k < numRows; k++){
-    	numCol.push(getRow(k));
-    }
-    return numCol;
-};
-
-var getRow = function(rowIndex) {
-	var row = [];
-	rowLength = parseInt(rowIndex / 2);
-	row.push(1);
-	for(var i = 1; i <= rowLength; i++){
-		row.push( row[i - 1] * (rowIndex - i + 1) / i);
-	}
-	if(rowIndex % 2 == 1){
-		for(i--; i >= 0; i--){
-			row.push(row[i]);
+	var numCol = [],
+		temp = [],
+		left,
+		right;
+	for(var i = 0; i < numRows; i++){
+		left = temp[0];
+		for(var j = 1; j < i; j++){
+			right = temp[j];
+			temp[j] = left + right;
+			left = right;
 		}
-	}else{
-		for(i -= 2; i >= 0; i--){
-			row.push(row[i]);
-		}
+		temp.push(1);
+		numCol.push(temp.concat());
 	}
-	return row;
+	return numCol;
 };
